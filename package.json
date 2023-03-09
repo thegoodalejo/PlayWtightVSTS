@@ -1,0 +1,26 @@
+{
+  "name": "playwtightvsts",
+  "version": "1.0.0",
+  "description": "Validations inside VSTS + integration with Teams for reporting",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegoodalejo/PlayWtightVSTS.git"
+  },
+  "keywords": [
+    "testing",
+    "playwright",
+    "automation",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thegoodalejo/PlayWtightVSTS/issues"
+  },
+  "homepage": "https://github.com/thegoodalejo/PlayWtightVSTS#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.31.2"
+  }
+}
