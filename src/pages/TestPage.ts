@@ -1,4 +1,4 @@
-import {Page} from '@playwright/test'
+import {expect, Page} from '@playwright/test'
 export class TestPage{
     readonly page: Page;
     constructor(page: Page){ 
@@ -7,16 +7,31 @@ export class TestPage{
         
         } 
         
-        async navigate(){ 
-        
-            await this.page.goto('https://spsprodcus3.vssps.visualstudio.com/_signin?realm=grupobancolombia.visualstudio.com&reply_to=https%3A%2F%2Fgrupobancolombia.visualstudio.com%2F&redirect=1&hid=b29a340b-0a5e-465f-b6e7-d3d33171fee8&context=eyJodCI6MiwiaGlkIjoiYzNhMDUxM2QtZjA2MS00MjdjLWI2MTEtNDllYzAyMDdiOTdhIiwicXMiOnt9LCJyciI6IiIsInZoIjoiIiwiY3YiOiIiLCJjcyI6IiJ90#ctx=eyJTaWduSW5Db29raWVEb21haW5zIjpbImh0dHBzOi8vbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbSIsImh0dHBzOi8vbG9naW4ubWljcm9zb2Z0b25saW5lLmNvbSJdfQ2');
-            await this.page.goto('https://login.microsoftonline.com/b5e244bd-c492-495b-8b10-61bfd453e423/oauth2/authorize?client_id=499b84ac-1321-427f-aa17-267ca6975798&site_id=501454&response_mode=form_post&response_type=code+id_token&redirect_uri=https%3A%2F%2Fspsprodcus3.vssps.visualstudio.com%2F_signedin&nonce=17c12f4b-a922-4cfc-87b0-6f7d3b9f61da&state=realm%3Dgrupobancolombia.visualstudio.com%26reply_to%3Dhttps%253A%252F%252Fgrupobancolombia.visualstudio.com%252F%26ht%3D2%26hid%3Db29a340b-0a5e-465f-b6e7-d3d33171fee8%26nonce%3D17c12f4b-a922-4cfc-87b0-6f7d3b9f61da&resource=https%3A%2F%2Fmanagement.core.windows.net%2F&cid=17c12f4b-a922-4cfc-87b0-6f7d3b9f61da&wsucxt=1');
-            await this.page.goto('https://login.microsoftonline.com/b5e244bd-c492-495b-8b10-61bfd453e423/oauth2/authorize?client_id=499b84ac-1321-427f-aa17-267ca6975798&site_id=501454&response_mode=form_post&response_type=code+id_token&redirect_uri=https%3A%2F%2Fspsprodcus3.vssps.visualstudio.com%2F_signedin&nonce=17c12f4b-a922-4cfc-87b0-6f7d3b9f61da&state=realm%3Dgrupobancolombia.visualstudio.com%26reply_to%3Dhttps%253A%252F%252Fgrupobancolombia.visualstudio.com%252F%26ht%3D2%26hid%3Db29a340b-0a5e-465f-b6e7-d3d33171fee8%26nonce%3D17c12f4b-a922-4cfc-87b0-6f7d3b9f61da&resource=https%3A%2F%2Fmanagement.core.windows.net%2F&cid=17c12f4b-a922-4cfc-87b0-6f7d3b9f61da&wsucxt=1&sso_reload=true');
-            await this.page.getByPlaceholder('usuario_red@bancolombia.com.co').click();
-            await this.page.getByPlaceholder('usuario_red@bancolombia.com.co').fill('alorozc@bancolombia.com.co');
-            await this.page.getByRole('button', { name: 'Siguiente' }).click();
-            await this.page.getByPlaceholder('Contraseña').click();
-            await this.page.getByPlaceholder('Contraseña').fill('4b*BwmY6e@c9M&');
+        async logIn(){ 
+            const txtUser = this.page.getByPlaceholder('usuario_red@bancolombia.com.co');
+            const txtPassword = this.page.getByPlaceholder('Password');
+            const btnNext = this.page.locator("xpath=//input[@id='idSIButton9']")
+
+            await this.page.goto('https://grupobancolombia.visualstudio.com/');
+            await this.page.waitForTimeout(2000);
+
+            await txtUser.click();
+            await txtUser.fill('alorozc@bancolombia.com.co');
+
+            expect(btnNext).toBeVisible();
+            await btnNext.click();
+
+            expect(txtPassword).toBeVisible();
+            await txtPassword.click();
+            await txtPassword.fill('4b*BwmY6e@c9M&');
+
+            expect(btnNext).toBeVisible();
+            await btnNext.click();
+
+            await this.page.waitForTimeout(10000);
+            expect(this.page.locator("xpath=//input[@class='search-input']")) .toBeVisible();
+            
+            console.log("asdads");
             await this.page.getByRole('button', { name: 'Iniciar sesión' }).click();
             await this.page.goto('https://login.microsoftonline.com/common/SAS/ProcessAuth');
             await this.page.goto('https://spsprodcus3.vssps.visualstudio.com/_signedin');

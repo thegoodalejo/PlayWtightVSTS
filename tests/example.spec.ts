@@ -5,6 +5,6 @@ Given
 When
 Then`, async ({ page }) => {
   const testPage = new TestPage(page);
-  await testPage.navigate();
+  await testPage.logIn();
 });
 

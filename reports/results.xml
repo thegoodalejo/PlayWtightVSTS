@@ -1,9 +1,9 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="31.570118000000715">
-<testsuite name="example.spec.ts" timestamp="1678366409286" hostname="chromium" tests="1" failures="1" skipped="0" time="30.009" errors="0">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="17.085958000004293">
+<testsuite name="example.spec.ts" timestamp="1678462997897" hostname="chromium" tests="1" failures="1" skipped="0" time="15.85" errors="0">
 <testcase name="ExampleGherkingFeature title
 Given
 When
-Then" classname="example.spec.ts" time="30.009">
+Then" classname="example.spec.ts" time="15.85">
 <failure message="example.spec.ts:3:5 ExampleGherkingFeature title
 Given
 When
@@ -11,30 +11,32 @@ Then" type="FAILURE">
 <![CDATA[  [chromium] › example.spec.ts:3:5 › ExampleGherkingFeature title
 Given
 When
-Then ──────────
+Then ────
+
+    Error: Timed out 10000ms waiting for expect(received).toBeVisible()
+    Call log:
+      - expect.toBeVisible with timeout 10000ms
+      - waiting for getByPlaceholder('Password')
+      - waiting for getByPlaceholder('Password')
+
+
+       at ..\src\pages\TestPage.ts:24
+
+      22 |             await btnNext.click();
+      23 |
+    > 24 |             expect(txtPassword).toBeVisible();
+         |                                 ^
+      25 |             await txtPassword.click();
+      26 |             await txtPassword.fill('4b*BwmY6e@c9M&');
+      27 |
+
+        at TestPage.logIn (D:\PlayWrightVSTS\PlayWtightVSTS\src\pages\TestPage.ts:24:33)
+        at D:\PlayWrightVSTS\PlayWtightVSTS\tests\example.spec.ts:8:3
 
     Test timeout of 30000ms exceeded.
 
-    locator.click: Target closed
-    =========================== logs ===========================
-    waiting for getByRole('button', { name: 'Siguiente' })
-    ============================================================
-
-       at ..\src\pages\TestPage.ts:17
-
-      15 |             await this.page.getByPlaceholder('usuario_red@bancolombia.com.co').click();
-      16 |             await this.page.getByPlaceholder('usuario_red@bancolombia.com.co').fill('alorozc@bancolombia.com.co');
-    > 17 |             await this.page.getByRole('button', { name: 'Siguiente' }).click();
-         |                                                                        ^
-      18 |             await this.page.getByPlaceholder('Contraseña').click();
-      19 |             await this.page.getByPlaceholder('Contraseña').fill('4b*BwmY6e@c9M&');
-      20 |             await this.page.getByRole('button', { name: 'Iniciar sesión' }).click();
-
-        at TestPage.navigate (D:\PlayWrightVSTS\PlayWtightVSTS\src\pages\TestPage.ts:17:72)
-        at D:\PlayWrightVSTS\PlayWtightVSTS\tests\example.spec.ts:8:3
-
     Pending operations:
-      - locator.click at src\pages\TestPage.ts:17:72
+      - page.waitForTimeout at src\pages\TestPage.ts:31:29
 
 ]]>
 </failure>
