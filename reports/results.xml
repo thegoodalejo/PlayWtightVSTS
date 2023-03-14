@@ -1,9 +1,9 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="17.085958000004293">
-<testsuite name="example.spec.ts" timestamp="1678462997897" hostname="chromium" tests="1" failures="1" skipped="0" time="15.85" errors="0">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="21.96551599997282">
+<testsuite name="example.spec.ts" timestamp="1678689206452" hostname="chromium" tests="1" failures="1" skipped="0" time="20.722" errors="0">
 <testcase name="ExampleGherkingFeature title
 Given
 When
-Then" classname="example.spec.ts" time="15.85">
+Then" classname="example.spec.ts" time="20.722">
 <failure message="example.spec.ts:3:5 ExampleGherkingFeature title
 Given
 When
@@ -11,35 +11,31 @@ Then" type="FAILURE">
 <![CDATA[  [chromium] › example.spec.ts:3:5 › ExampleGherkingFeature title
 Given
 When
-Then ────
+Then ──────────
 
-    Error: Timed out 10000ms waiting for expect(received).toBeVisible()
-    Call log:
-      - expect.toBeVisible with timeout 10000ms
-      - waiting for getByPlaceholder('Password')
-      - waiting for getByPlaceholder('Password')
+    Error: expect(received).toBeTruthy()
 
+    Received: null
 
-       at ..\src\pages\TestPage.ts:24
+       at ..\src\pages\TestPage.ts:48
 
-      22 |             await btnNext.click();
-      23 |
-    > 24 |             expect(txtPassword).toBeVisible();
-         |                                 ^
-      25 |             await txtPassword.click();
-      26 |             await txtPassword.fill('4b*BwmY6e@c9M&');
-      27 |
+      46 |         const pageText = await lblHuTitle.textContent() + "awddadawd";
+      47 |         console.log(pageText);
+    > 48 |         expect((pageText?.match(regex))).toBeTruthy();
+         |                                          ^
+      49 |         
+      50 |
+      51 |     
 
-        at TestPage.logIn (D:\PlayWrightVSTS\PlayWtightVSTS\src\pages\TestPage.ts:24:33)
+        at TestPage.logIn (D:\PlayWrightVSTS\PlayWtightVSTS\src\pages\TestPage.ts:48:42)
         at D:\PlayWrightVSTS\PlayWtightVSTS\tests\example.spec.ts:8:3
-
-    Test timeout of 30000ms exceeded.
-
-    Pending operations:
-      - page.waitForTimeout at src\pages\TestPage.ts:31:29
-
 ]]>
 </failure>
+<system-out>
+<![CDATA[Expect timeout de Auth
+awddadawd
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>
